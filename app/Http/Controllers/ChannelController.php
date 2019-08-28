@@ -3,10 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Channel;
+use App\Http\Requests\Channels\UpdateChanelRequest;
 use Illuminate\Http\Request;
 
 class ChannelController extends Controller
 {
+    /**
+     * Bắt buộc đăng nhập để update
+     *
+     */
+    public function __construct()
+    {
+        $this->middleware('auth')->only('update');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -61,13 +71,13 @@ class ChannelController extends Controller
     }
 
     /**
-     * 
+     *
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Channel $channel)
+    public function update(UpdateChanelRequest $request, Channel $channel)
     {
         if ($request->hasFile('image')) {
             // xóa ảnh củ
@@ -76,6 +86,11 @@ class ChannelController extends Controller
             $channel->addMediaFromRequest('image')
                 ->toMediaCollection('images');
         }
+
+        $channel->update([
+            'name' => $request->name,
+            'description' => $request->description
+        ]);
 
         // dd($channel->image());
         return  redirect()->back();

@@ -17,6 +17,15 @@ class Channel extends Model implements HasMedia
     }
 
     /**
+     * Đăng nhập thì chủ kênh, ngược lại là khách
+     */
+    public function isAuthorChannel()
+    {
+        if (!auth()->check()) return false;
+        return $this->user_id === auth()->user()->id;
+    }
+
+    /**
      * Tạo ảnh thumb , hàm có sẳn của thư viện
     */
     public function registerMediaConversions(?Media $media = null)
