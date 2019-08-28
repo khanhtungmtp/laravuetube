@@ -61,15 +61,24 @@ class ChannelController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * 
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Channel $channel)
     {
-        //
+        if ($request->hasFile('image')) {
+            // xóa ảnh củ
+            $channel->clearMediaCollection('images');
+            // thêm mới hình ảnh vào channel và media ( toMediaCollection() )
+            $channel->addMediaFromRequest('image')
+                ->toMediaCollection('images');
+        }
+
+        // dd($channel->image());
+        return  redirect()->back();
     }
 
     /**
