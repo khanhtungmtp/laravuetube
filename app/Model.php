@@ -13,6 +13,7 @@ class Model extends BaseModel
      *
      */
     public $incrementing = false;
+    protected $guarded = [];
 
     protected static function boot()
     {
