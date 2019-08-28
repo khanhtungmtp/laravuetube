@@ -38,6 +38,11 @@
                                 <p class="text-center">
                                     {{ $channel->description }}
                                 </p>
+                                <p class="text-center">
+                                    <button class="btn-danger">
+                                        Đăng ký 3K
+                                    </button>
+                                </p>
                             </div>
 
                             @if ($channel->isAuthorChannel())
@@ -68,7 +73,7 @@
                                     </span>
                                 @endif
                             </div>
-                            <button type="submit" class="btn btn-info">Cập nhập kênh</button>
+                            <button type="submit" class="btn btn-primary">Cập nhập kênh</button>
                         </form>
                             @endif
                     </div>
