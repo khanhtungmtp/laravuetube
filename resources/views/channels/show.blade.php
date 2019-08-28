@@ -39,9 +39,11 @@
                                     {{ $channel->description }}
                                 </p>
                                 <p class="text-center">
-                                    <button class="btn-danger">
-                                        Đăng ký 3K
-                                    </button>
+                                    <subscribe-button :subscriptions="{{ $channel->subscriptions }}" inline-template>
+                                        <button @click="toggleSubscription" class="btn-danger">
+                                            Đăng ký 3K
+                                        </button>
+                                    </subscribe-button>
                                 </p>
                             </div>
 

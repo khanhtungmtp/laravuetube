@@ -40,7 +40,11 @@ class Channel extends Model implements HasMedia
         if ($this->media->first()) {
             return $this->media->first()->getFullUrl('thumb');
         }
-
         return null;
+    }
+
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class);
     }
 }
